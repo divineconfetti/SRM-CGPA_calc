@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester GPA Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <h1 class="logo">Semester GPA Calculator</h1>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Setup Section -->
+        <section class="card" id="setupSection">
+            <h2>Start Calculation</h2>
+            <div class="form-group">
+                <label for="numSubjects">Number of Subjects</label>
+                <div class="input-group">
+                    <input type="number" id="numSubjects" min="1" max="15" placeholder="Enter number (1-15)">
+                    <button id="generateBtn" class="btn btn-primary">Generate</button>
+                </div>
+                <div id="setupError" class="error-message"></div>
+            </div>
+        </section>
+
+        <!-- Subjects Entry Section -->
+        <section class="card hidden" id="subjectsSection">
+            <h2>Enter Subject Details</h2>
+            <form id="subjectsForm">
+                <div id="subjectsContainer" class="subjects-grid">
+                    <!-- Dynamic rows go here -->
+                </div>
+                <div id="formError" class="error-message"></div>
+                <div class="action-buttons">
+                    <button type="submit" class="btn btn-primary">Calculate GPA</button>
+                    <button type="button" id="resetBtn" class="btn btn-secondary">Reset Form</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Results Section -->
+        <section class="card hidden" id="resultsSection">
+            <div id="printArea">
+                <div class="result-header">
+                    <h2>Calculation Results</h2>
+                    <div id="gpaCard" class="gpa-card">
+                        <div class="gpa-value" id="finalGpa">0.00</div>
+                        <div class="gpa-label">Semester GPA</div>
+                        <div class="performance-message" id="performanceMsg"></div>
+                    </div>
+                </div>
+
+                <div class="summary-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Total Credits</span>
+                        <span class="stat-value" id="totalCredits">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Total Points</span>
+                        <span class="stat-value" id="totalPoints">0</span>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="result-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Credit</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTableBody">
+                            <!-- Results go here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="gradeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="action-buttons" id="resultActions">
+                <button id="downloadPdfBtn" class="btn btn-accent">Download PDF</button>
+                <button id="exportCsvBtn" class="btn btn-secondary">Export CSV</button>
+                <button id="newCalculationBtn" class="btn btn-outline">New Calculation</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Developed by Harsh</p>
+    </footer>
+</body>
+</html>
